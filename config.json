@@ -1,0 +1,19 @@
+{
+  "host": "0.0.0.0",
+  "port": 8080,
+  "auto_ok_mode": false,
+  "handshake": {
+    "ErrorDelay": 30,
+    "Delay": 10,
+    "TransTimes": "00:00;14:05",
+    "TransInterval": 1,
+    "TransFlag": "1111111111",
+    "TimeZone": 0,
+    "Realtime": 1,
+    "Encrypt": 0,
+    "ServerVer": "2.4.2",
+    "PushProtVer": "2.4.2",
+    "PushOptionsFlag": 1,
+    "PushOptions": "FingerFunOn,FaceFunOn"
+  }
+}
