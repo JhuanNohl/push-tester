@@ -10,19 +10,31 @@ injetar comandos manualmente. Detalhes do protocolo e escopo em
 
 ```bash
 pip install -r requirements.txt
-uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8081 --reload
 ```
 
-Acesse a tela de monitoramento em http://localhost:8080 e aponte o
-equipamento (ServerIP/ServerPort) para o IP desta máquina na porta 8080.
+Acesse a tela de monitoramento em http://localhost:8081 e aponte o
+equipamento (ServerIP/ServerPort) para o IP desta máquina na porta 8081.
 
 ## Configuração
 
+O protocolo do equipamento (`mode`: `"att"` para terminais de ponto ou
+`"acc"` para controladoras de acesso — cada um usa um formato de handshake
+diferente, ver [SCOPE.md](SCOPE.md)) é trocável direto na tela, no seletor
+"Protocolo" do cabeçalho — não precisa reiniciar o servidor, e a escolha é
+salva de volta em `config.json` (`POST /api/mode`).
+
 Edite `config.json` (na raiz do projeto, ou ao lado do executável quando
-empacotado) para ajustar host/porta e os valores do handshake
-(`TimeZone`, `Realtime`, `Delay`, `ServerVer`, etc.), ou o modo
-`auto_ok_mode` (responde sempre `OK` em `/iclock/getrequest`, ignorando a
-fila de comandos).
+empacotado) para ajustar host/porta, os valores de
+`handshake.att`/`handshake.acc`, ou o modo `auto_ok_mode` (responde sempre
+`OK` em `/iclock/getrequest`, ignorando a fila de comandos).
+
+Esta ferramenta é só um **tester de conexão**: o ServerIP/porta do
+equipamento é sempre configurado nele mesmo (menu do equipamento), nunca
+por aqui. Depois de apontar o equipamento pra esta máquina, use o botão
+"Procurar dispositivos..." da tela pra confirmar que ele aparece — se
+aparecer, a conexão está funcionando; se não, o problema está no
+dispositivo, na rede ou na config de ServerIP/porta dele.
 
 ## Empacotando como .exe portátil
 

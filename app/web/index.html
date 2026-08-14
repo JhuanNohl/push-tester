@@ -35,6 +35,25 @@
     background: var(--panel);
     border-bottom: 1px solid var(--border);
   }
+  .mode-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .mode-switch .label { color: var(--muted); }
+  .mode-switch select {
+    background: transparent;
+    color: var(--accent);
+    border: none;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+  }
   header h1 {
     font-size: 15px;
     margin: 0;
@@ -87,6 +106,7 @@
   .badge.getrequest { background: #3a3320; color: #e0c47f; }
   .badge.devicecmd { background: #3a2440; color: #d79ee8; }
   .badge.command_queued { background: #402424; color: #e89e9e; }
+  .badge.mode_changed { background: #2a3f66; color: #9dc0ff; }
   .badge.encrypted { background: var(--err); color: #fff; }
   .ts { color: var(--muted); }
   .sn { color: var(--accent); font-weight: 600; }
@@ -154,6 +174,74 @@
   button.primary:hover { background: #6bacff; }
   hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
   .empty { color: var(--muted); text-align: center; padding: 40px 0; }
+  .hint { color: var(--muted); font-size: 11px; margin: -6px 0 10px; }
+  .selected-device {
+    padding: 6px 8px;
+    margin-bottom: 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+  }
+  .selected-device.active { color: var(--accent); font-weight: 600; }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  .modal {
+    width: min(720px, 92vw);
+    max-height: 86vh;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .modal-close {
+    width: auto;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 16px;
+    padding: 0 4px;
+    margin: 0;
+  }
+  .modal-body { padding: 14px; overflow-y: auto; }
+  .modal-footer {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .modal-footer button { width: auto; margin: 0; }
+  .modal-toprow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .modal-toprow button { width: auto; margin: 0; }
+  .modal-filters { display: flex; gap: 8px; margin-bottom: 10px; }
+  .modal-filters label { flex: 1; margin-bottom: 0; }
+  .modal-filters input { margin-bottom: 0; }
+  table.search-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 12px; }
+  table.search-table th, table.search-table td {
+    border: 1px solid var(--border);
+    padding: 5px 8px;
+    text-align: left;
+  }
+  table.search-table th { color: var(--muted); font-weight: 600; }
+  table.search-table a.op-link { color: var(--accent); cursor: pointer; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -161,30 +249,74 @@
   <span class="dot" id="statusDot"></span>
   <h1>ZKTeco PUSH Tester</h1>
   <span class="status-text" id="statusText">conectando...</span>
+  <div class="mode-switch">
+    <span class="label">Protocolo:</span>
+    <select id="modeSelect">
+      <option value="att">ATT (Attendance)</option>
+      <option value="acc">ACC (Access/Security)</option>
+    </select>
+  </div>
 </header>
 <main>
   <div id="log"><div class="empty">Aguardando tráfego do dispositivo...</div></div>
   <aside>
     <h2>Injetar comando</h2>
-    <label for="sn">SN do equipamento</label>
-    <input id="sn" placeholder="ex: CIWH123456789" />
+    <div class="selected-device" id="selectedDeviceInfo">nenhum dispositivo selecionado</div>
+    <button id="openSearchModal">Procurar dispositivos...</button>
 
     <label for="cmd">Comando</label>
     <textarea id="cmd" rows="3" placeholder="ex: REBOOT"></textarea>
     <button class="primary" id="sendCmd">Enviar para a fila</button>
 
-    <hr />
-    <h2>Atalhos</h2>
-    <button data-cmd="CONTROL DEVICE 01 01 05 00 00">Abrir porta 1 (5s)</button>
-    <button data-cmd="DATA QUERY ATTLOG StartTime=2020-01-01 00:00:00\tEndTime=2030-01-01 00:00:00">Consultar ATTLOG</button>
-    <button data-cmd="REBOOT">Reiniciar equipamento</button>
+    <div id="shortcutsSection">
+      <hr />
+      <h2>Atalhos (<span id="modeLabel">-</span>)</h2>
+      <div id="shortcuts"></div>
+    </div>
   </aside>
 </main>
+
+<div id="searchModalOverlay" class="modal-overlay" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <span>Procurar</span>
+      <button class="modal-close" id="closeSearchModalX">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-toprow">
+        <button class="primary" id="modalBuscar">Buscar</button>
+        <span class="hint" id="modalBuscarNote" style="margin:0"></span>
+      </div>
+      <div class="modal-filters">
+        <label>IP <input id="filterIp" placeholder="filtrar por IP" /></label>
+        <label>SN <input id="filterSn" placeholder="filtrar por SN" /></label>
+      </div>
+      <table class="search-table">
+        <thead>
+          <tr><th>Endereço de IP</th><th>Número de Série</th><th>Modo</th><th>Visto às</th><th>Alcançável</th><th>Operações</th></tr>
+        </thead>
+        <tbody id="searchResults"></tbody>
+      </table>
+      <div class="hint">
+        Lista equipamentos que já falaram PUSH com este servidor (porta
+        atual do sistema: <b id="modalPort">-</b>). Aponte o ServerIP/porta
+        do equipamento pra cá e clique em "Buscar" pra confirmar que a
+        conexão está funcionando.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button id="closeSearchModal">Fechar</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const logEl = document.getElementById("log");
   const statusDot = document.getElementById("statusDot");
   const statusText = document.getElementById("statusText");
   let sawFirstEvent = false;
+  let currentMode = "att";
+  let currentPort = null;
 
   function esc(s) {
     return String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
@@ -197,7 +329,51 @@
     ).join("");
   }
 
+  // SN -> IP dos equipamentos vistos no tráfego real (alimenta o modal
+  // "Procurar"). O alvo dos comandos é sempre um SN — é o que o dispositivo
+  // manda em cada request e a chave da fila de comandos.
+  const knownDevices = new Map();
+
+  // Dispositivo selecionado pra receber comandos (via modal "Procurar" ou
+  // auto-selecionado assim que aparece pela primeira vez no tráfego).
+  let selectedDevice = null;
+
+  function selectDevice(device) {
+    selectedDevice = { sn: device.sn, ip: device.ip || null };
+    const info = document.getElementById("selectedDeviceInfo");
+    info.textContent = `SN=${device.sn}${device.ip ? ` (${device.ip})` : ""}`;
+    info.classList.add("active");
+  }
+
+  function currentTargetSn() {
+    if (!selectedDevice) {
+      alert('Nenhum dispositivo selecionado. Clique em "Procurar dispositivos..." e escolha um.');
+      return null;
+    }
+    return selectedDevice.sn;
+  }
+
+  function touchDevice(sn, ip) {
+    if (!sn || sn === "unknown") return;
+    const isNew = !knownDevices.has(sn);
+    if (knownDevices.get(sn)?.ip === ip) return;
+    knownDevices.set(sn, { ip });
+    if (isNew && !selectedDevice) selectDevice({ sn, ip });
+  }
+
+  async function loadDevices() {
+    try {
+      const res = await fetch("/api/devices");
+      const list = await res.json();
+      list.forEach(d => touchDevice(d.sn, d.ip));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  loadDevices();
+
   function renderEvent(ev) {
+    touchDevice(ev.sn, ev.ip);
     if (!sawFirstEvent) { logEl.innerHTML = ""; sawFirstEvent = true; }
     const el = document.createElement("div");
     el.className = "event";
@@ -208,6 +384,7 @@
     if (ev.records) body += renderFields(ev.records);
     if (ev.parsed) body += `<div class="event-body">${esc(JSON.stringify(ev.parsed))}</div>`;
     if (ev.command) body += `<div class="event-body">command_id=${ev.command_id} → ${esc(ev.command)}</div>`;
+    if (ev.type === "mode_changed") body += `<div class="event-body">protocolo trocado para ${esc((ev.mode || "").toUpperCase())}</div>`;
 
     let headersHtml = "";
     if (ev.headers) {
@@ -249,27 +426,173 @@
     };
     ws.onerror = () => ws.close();
     ws.onmessage = (msg) => {
-      try { renderEvent(JSON.parse(msg.data)); } catch (e) { console.error(e); }
+      try {
+        const ev = JSON.parse(msg.data);
+        if (ev.type === "mode_changed") loadServerInfo();
+        renderEvent(ev);
+      } catch (e) { console.error(e); }
     };
   }
   connect();
 
-  document.querySelectorAll("aside button[data-cmd]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.getElementById("cmd").value = btn.dataset.cmd;
+  // Atalhos por modo. ACC (Security PUSH Communication Protocol) e ATT
+  // (Attendance PUSH Communication Protocol) têm comandos diferentes;
+  // "CONTROL DEVICE AABBCCDDEE" é hex contíguo, sem espaços entre os bytes
+  // (AA=01 controla saída, BB=porta, CC=01 fechadura, DD=segundos em hex).
+  const SHORTCUTS = {
+    att: [
+      { label: "Consultar ATTLOG", cmd: "DATA QUERY ATTLOG StartTime=2020-01-01 00:00:00\tEndTime=2030-01-01 00:00:00" },
+      { label: "Reiniciar equipamento", cmd: "REBOOT" },
+      { label: "Limpar log de marcações", cmd: "CLEAR LOG" },
+    ],
+    acc: [
+      { label: "Abrir porta 1 (5s)", cmd: "CONTROL DEVICE 01010105" },
+      { label: "Consultar eventos (transaction)", cmd: "DATA QUERY tablename=transaction,fielddesc=*,filter=*" },
+      { label: "Reiniciar equipamento", cmd: "REBOOT" },
+    ],
+  };
+
+  function renderShortcuts(mode) {
+    const section = document.getElementById("shortcutsSection");
+    const container = document.getElementById("shortcuts");
+    const list = SHORTCUTS[mode] || SHORTCUTS.att;
+    container.innerHTML = "";
+    if (!list.length) { section.style.display = "none"; return; }
+    section.style.display = "";
+    list.forEach(({ label, cmd }) => {
+      const btn = document.createElement("button");
+      btn.textContent = label;
+      btn.addEventListener("click", () => { document.getElementById("cmd").value = cmd; });
+      container.appendChild(btn);
     });
+  }
+
+  async function loadServerInfo() {
+    try {
+      const res = await fetch("/api/server-info");
+      const info = await res.json();
+      const mode = info.mode || "att";
+      currentMode = mode;
+      currentPort = info.port;
+      document.getElementById("modeLabel").textContent = mode.toUpperCase();
+      document.getElementById("modeSelect").value = mode;
+      renderShortcuts(mode);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  loadServerInfo();
+
+  document.getElementById("modeSelect").addEventListener("change", async (e) => {
+    const mode = e.target.value;
+    try {
+      const res = await fetch("/api/mode", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode }),
+      });
+      const data = await res.json();
+      if (!res.ok) { alert(`erro: ${data.detail || res.status}`); }
+    } catch (err) {
+      alert("erro de rede ao trocar o protocolo.");
+    } finally {
+      await loadServerInfo();
+    }
   });
 
-  document.getElementById("sendCmd").addEventListener("click", async () => {
-    const sn = document.getElementById("sn").value.trim();
-    const command = document.getElementById("cmd").value.trim();
-    if (!sn || !command) { alert("Preencha SN e comando."); return; }
-    await fetch("/api/commands", {
+  async function sendCommand(sn, command) {
+    const res = await fetch("/api/commands", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sn, command }),
     });
+    return res.json();
+  }
+
+  document.getElementById("sendCmd").addEventListener("click", async () => {
+    const sn = currentTargetSn();
+    if (!sn) return;
+    const command = document.getElementById("cmd").value.trim();
+    if (!command) { alert("Preencha o comando."); return; }
+    await sendCommand(sn, command);
   });
+
+  // Modal "Procurar" — lista os equipamentos que já falaram PUSH com este
+  // servidor (registro real de tráfego), pra confirmar que a conexão do
+  // equipamento apontado pra cá está funcionando.
+  let lastSearchResults = [];
+
+  function openModal(el) { el.style.display = "flex"; }
+  function closeModal(el) { el.style.display = "none"; }
+
+  document.getElementById("openSearchModal").addEventListener("click", () => {
+    document.getElementById("modalPort").textContent = String(currentPort ?? "-");
+    openModal(document.getElementById("searchModalOverlay"));
+    runSearch();
+  });
+  document.getElementById("closeSearchModal").addEventListener("click", () => closeModal(document.getElementById("searchModalOverlay")));
+  document.getElementById("closeSearchModalX").addEventListener("click", () => closeModal(document.getElementById("searchModalOverlay")));
+
+  async function runSearch() {
+    const note = document.getElementById("modalBuscarNote");
+    note.textContent = "buscando...";
+    try {
+      const res = await fetch("/api/devices");
+      const devices = await res.json();
+      // sinal auxiliar de alcance TCP, em paralelo — não bloqueia a listagem
+      const withReachability = await Promise.all(devices.map(async d => {
+        try {
+          const r = await fetch(`/api/devices/lookup?ip=${encodeURIComponent(d.ip)}`);
+          const data = await r.json();
+          return { ...d, reachable: data.reachable_port_80 };
+        } catch (e) {
+          return { ...d, reachable: null };
+        }
+      }));
+      lastSearchResults = withReachability;
+      note.textContent = `${devices.length} dispositivo(s) — atualizado às ${new Date().toLocaleTimeString()}`;
+      renderSearchResults();
+    } catch (e) {
+      note.textContent = "erro ao buscar.";
+    }
+  }
+  document.getElementById("modalBuscar").addEventListener("click", runSearch);
+
+  function renderSearchResults() {
+    const ipFilter = document.getElementById("filterIp").value.trim().toLowerCase();
+    const snFilter = document.getElementById("filterSn").value.trim().toLowerCase();
+    const tbody = document.getElementById("searchResults");
+    const filtered = lastSearchResults.filter(d =>
+      (!ipFilter || (d.ip || "").toLowerCase().includes(ipFilter)) &&
+      (!snFilter || d.sn.toLowerCase().includes(snFilter))
+    );
+    tbody.innerHTML = "";
+    if (!filtered.length) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted)">nenhum dispositivo encontrado no tráfego ainda</td></tr>`;
+      return;
+    }
+    filtered.forEach(d => {
+      const tr = document.createElement("tr");
+      const seenAt = new Date(d.last_seen * 1000).toLocaleTimeString();
+      const reachable = d.reachable === true ? "sim (porta 80)" : d.reachable === false ? "não" : "?";
+      const isSelected = selectedDevice && selectedDevice.sn === d.sn;
+      tr.innerHTML = `
+        <td>${esc(d.ip || "-")}</td>
+        <td>${esc(d.sn)}${isSelected ? " ✓" : ""}</td>
+        <td>${esc((currentMode || "att").toUpperCase())}</td>
+        <td>${esc(seenAt)}</td>
+        <td>${esc(reachable)}</td>
+        <td><a class="op-link" data-action="select">Selecionar</a></td>
+      `;
+      tr.querySelector('[data-action="select"]').addEventListener("click", () => {
+        selectDevice(d);
+        closeModal(document.getElementById("searchModalOverlay"));
+      });
+      tbody.appendChild(tr);
+    });
+  }
+  document.getElementById("filterIp").addEventListener("input", renderSearchResults);
+  document.getElementById("filterSn").addEventListener("input", renderSearchResults);
 </script>
 </body>
 </html>

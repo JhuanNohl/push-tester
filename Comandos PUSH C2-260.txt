@@ -1,0 +1,288 @@
+Comandos PUSH C2-260:
+
+#Adicionar ao software:
+
+"Comandos do Dispositivo",
+"ID","Número de Série","Conteúdo","Imediato","Horário de Envio","Tempo de Retorno","Valor Retornado","Observação",
+"611","20161116999","DATA UPDATE userauthorize Pin=1	AuthorizeTimezoneId=1	AuthorizeDoorId=1	DevID=4
+Pin=1	AuthorizeTimezoneId=1	AuthorizeDoorId=2	DevID=4
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"610","20161116999","DATA DELETE SuperAuthorize Pin=1
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"609","20161116999","DATA UPDATE mulcarduser Pin=1	CardNo=194accf2	LossCardFlag=0	CardType=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"608","20161116999","DATA UPDATE extuser Pin=1	FunSwitch=0	FirstName=Jhuan	LastName=Nohl
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"607","20161116999","DATA UPDATE user CardNo=	Pin=1	Password=	Group=0	StartTime=0	EndTime=0	Name=	ViceCard=	SuperAuthorize=0	Disable=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"606","20161116999","DATA UPDATE DoorParameters ID=1	Name=DoorMultiCardOpenDoor	Value=0	DevID=4
+ID=2	Name=DoorMultiCardOpenDoor	Value=0	DevID=4
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"605","20161116999","DATA DELETE multimcard *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"604","20161116999","DATA UPDATE DoorParameters ID=1	Name=MaskFlag	Value=0	DevID=4
+ID=2	Name=MaskFlag	Value=0	DevID=4
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"603","20161116999","SET OPTIONS UserWithMulCardOn=1
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"602","20161116999","DATA UPDATE WGFormat ID=2	CardBit=26	SiteCode=0	FormatName=Wiegand Format26	CardFormat=pccccccccccccccccccccccccp:eeeeeeeeeeeeeooooooooooooo
+ID=3	CardBit=26	SiteCode=0	FormatName=Wiegand Format26a	CardFormat=pssssssssccccccccccccccccp:eeeeeeeeeeeeeooooooooooooo
+ID=4	CardBit=34	SiteCode=0	FormatName=Wiegand Format34	CardFormat=pccccccccccccccccccccccccccccccccp:eeeeeeeeeeeeeeeeeooooooooooooooooo
+ID=5	CardBit=34	SiteCode=0	FormatName=Wiegand Format34a	CardFormat=pssssssssssssssssccccccccccccccccp:eeeeeeeeeeeeeeeeeooooooooooooooooo
+ID=6	CardBit=36	SiteCode=0	FormatName=Wiegand Format36	CardFormat=pssssssssssssssssccccccccccccccccccp:oooooooooooooooeeeeeeeeeeeeeeeeeeeee
+ID=7	CardBit=37	SiteCode=0	FormatName=Wiegand Format37	CardFormat=psssssssssssssssscccccccccccccccccccp:eeeeeeeeeeeeeeeeeeboooooooooooooooooo
+ID=8	CardBit=37	SiteCode=0	FormatName=Wiegand Format37a	CardFormat=pmmmmsssssssssssscccccccccccccccccccp:eeeeeeeeeeeeeeeeeeooooooooooooooooooo
+ID=9	CardBit=50	SiteCode=0	Format...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"601","20161116999","DATA DELETE WGFormat *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"600","20161116999","DATA UPDATE DefaultWGFormat ID=2	CardBit=26	SiteCode=0	FormatName=Wiegand Format26	CardFormat=pccccccccccccccccccccccccp:eeeeeeeeeeeeeooooooooooooo
+ID=4	CardBit=34	SiteCode=0	FormatName=Wiegand Format34	CardFormat=pccccccccccccccccccccccccccccccccp:eeeeeeeeeeeeeeeeeooooooooooooooooo
+ID=6	CardBit=36	SiteCode=0	FormatName=Wiegand Format36	CardFormat=pssssssssssssssssccccccccccccccccccp:oooooooooooooooeeeeeeeeeeeeeeeeeeeee
+ID=7	CardBit=37	SiteCode=0	FormatName=Wiegand Format37	CardFormat=psssssssssssssssscccccccccccccccccccp:eeeeeeeeeeeeeeeeeeboooooooooooooooooo
+ID=9	CardBit=50	SiteCode=0	FormatName=Wiegand Format50	CardFormat=pssssssssssssssssccccccccccccccccccccccccccccccccp:eeeeeeeeeeeeeeeeeeeeeeeeeooooooooooooooooooooooooo
+ID=10	CardBit=66	SiteCode=0	FormatName=Wiegand Format66	CardFormat=pccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccp:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeooooooooooooooooooooooooooooooooo
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"599","20161116999","DATA DELETE DefaultWGFormat *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:54","0","",
+"598","20161116999","SET OPTIONS WGFmtWithSitecodeOn=1
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:53","0","",
+"597","20161116999","DATA DELETE holiday *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:53","0","",
+"596","20161116999","DATA UPDATE timezone TimezoneId=1	SunTime1=2359	SunTime2=0	SunTime3=0	MonTime1=2359	MonTime2=0	MonTime3=0	TueTime1=2359	TueTime2=0	TueTime3=0	WedTime1=2359	WedTime2=0	WedTime3=0	ThuTime1=2359	ThuTime2=0	ThuTime3=0	FriTime1=2359	FriTime2=0	FriTime3=0	SatTime1=2359	SatTime2=0	SatTime3=0	Hol1Time1=2359	Hol1Time2=0	Hol1Time3=0	Hol2Time1=2359	Hol2Time2=0	Hol2Time3=0	Hol3Time1=2359	Hol3Time2=0	Hol3Time3=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:53","0","",
+"595","20161116999","DATA DELETE timezone *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:53","0","",
+"594","20161116999","SET OPTIONS AutoServerMode=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"593","20161116999","DATA UPDATE ReaderProperty ID=1	DevID=4	OfflineRefuse=0
+ID=2	DevID=4	OfflineRefuse=0
+ID=3	DevID=4	OfflineRefuse=0
+ID=4	DevID=4	OfflineRefuse=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"592","20161116999","DATA DELETE extboardrelationlist *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"591","20161116999","DATA DELETE extboardproperty *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"590","20161116999","DATA UPDATE DevParameters ID=4	Name=IsSupportReaderEncrypt	Value=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"589","20161116999","DATA UPDATE ReaderProperty ID=1	DoorID=1	Type=1	Address=1	IPAddress=	Port=4376	MAC=	InOut=0	Disable=0	VerifyType=0	Multicast=	DevID=4
+ID=2	DoorID=1	Type=1	Address=2	IPAddress=	Port=4376	MAC=	InOut=1	Disable=0	VerifyType=0	Multicast=	DevID=4
+ID=3	DoorID=2	Type=1	Address=3	IPAddress=	Port=4376	MAC=	InOut=0	Disable=0	VerifyType=0	Multicast=	DevID=4
+ID=4	DoorID=2	Type=1	Address=4	IPAddress=	Port=4376	MAC=	InOut=1	Disable=0	VerifyType=0	Multicast=	DevID=4
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"588","20161116999","DATA DELETE ReaderParameters *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"587","20161116999","DATA DELETE ReaderProperty *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"586","20161116999","DATA DELETE outrelaysetting *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"585","20161116999","DATA UPDATE AuxOut ID=1	DevID=4	Address=1	Disable=0
+ID=2	DevID=4	Address=2	Disable=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"584","20161116999","DATA DELETE AuxOut *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"583","20161116999","DATA UPDATE InputIOSetting Number=1	InType=1	TimeZoneId=1	DevID=4
+Number=2	InType=1	TimeZoneId=1	DevID=4
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"582","20161116999","DATA UPDATE AuxIn ID=1	DevID=4	Address=1	Disable=0
+ID=2	DevID=4	Address=2	Disable=0
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"581","20161116999","DATA DELETE AuxIn *
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"580","20161116999","DATA UPDATE DoorParameters ID=1	Name=DoorAutoMatch	Value=1	DevID=4
+ID=1	Name=DoorDrivertime	Value=5	DevID=4
+ID=1	Name=DoorKeepOpenTimeZone	Value=0	DevID=4
+ID=1	Name=DoorValidTZ	Value=1	DevID=4
+ID=1	Name=DoorSupperPassWord	Value=	DevID=4
+ID=1	Name=DoorIntertime	Value=2	DevID=4
+ID=1	Name=DoorVerifyType	Value=0	DevID=4
+ID=1	Name=DoorSensorType	Value=0	DevID=4
+ID=1	Name=DoorDetectortime	Value=15	DevID=4
+ID=1	Name=DoorCloseAndLock	Value=0	DevID=4
+ID=1	Name=DoorForcePassWord	Value=	DevID=4
+ID=1	Name=DoorInTimeAPB	Value=0	DevID=4
+ID=1	Name=DoorREXInput	Value=1	DevID=4
+ID=1	Name=DoorREXTimeOut	Value=	DevID=4
+ID=1	Name=DoorDelayOpenTime	Value=0	DevID=4
+ID=1	Name=ExtDoorDelayDrivertime	Value=5	DevID=4
+ID=1	Name=DoorMultiCardInterTime	Value=10	DevID=4
+...","Não","2026-08-13 15:39:43","2026-08-13 15:39:51","0","",
+"579","20161116999","DATA UPDATE InputIOSetting Number=1	InType=0	TimeZoneId=1	DevID=4
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"578","20161116999","DATA UPDATE ReaderWGFormat ReaderID=1	DevID=4	WGFormatID=0	ParityVerifyDisable=0	ReversalType=0
+ReaderID=2	DevID=4	WGFormatID=0	ParityVerifyDisable=0	ReversalType=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"577","20161116999","DATA DELETE ReaderWGFormat ReaderID=1	DevID=4
+ReaderID=2	DevID=4
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"576","20161116999","DATA UPDATE DoorParameters ID=2	Name=DoorAutoMatch	Value=1	DevID=4
+ID=2	Name=DoorDrivertime	Value=5	DevID=4
+ID=2	Name=DoorKeepOpenTimeZone	Value=0	DevID=4
+ID=2	Name=DoorValidTZ	Value=1	DevID=4
+ID=2	Name=DoorSupperPassWord	Value=	DevID=4
+ID=2	Name=DoorIntertime	Value=2	DevID=4
+ID=2	Name=DoorVerifyType	Value=0	DevID=4
+ID=2	Name=DoorSensorType	Value=0	DevID=4
+ID=2	Name=DoorDetectortime	Value=15	DevID=4
+ID=2	Name=DoorCloseAndLock	Value=0	DevID=4
+ID=2	Name=DoorForcePassWord	Value=	DevID=4
+ID=2	Name=DoorInTimeAPB	Value=0	DevID=4
+ID=2	Name=DoorREXInput	Value=1	DevID=4
+ID=2	Name=DoorREXTimeOut	Value=	DevID=4
+ID=2	Name=DoorDelayOpenTime	Value=0	DevID=4
+ID=2	Name=ExtDoorDelayDrivertime	Value=5	DevID=4
+ID=2	Name=DoorMultiCardInterTime	Value=10	DevID=4
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"575","20161116999","DATA UPDATE InputIOSetting Number=2	InType=0	TimeZoneId=1	DevID=4
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"574","20161116999","DATA UPDATE ReaderWGFormat ReaderID=3	DevID=4	WGFormatID=0	ParityVerifyDisable=0	ReversalType=0
+ReaderID=4	DevID=4	WGFormatID=0	ParityVerifyDisable=0	ReversalType=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"573","20161116999","DATA DELETE ReaderWGFormat ReaderID=3	DevID=4
+ReaderID=4	DevID=4
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"572","20161116999","DATA DELETE InputIOSetting *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"571","20161116999","DATA DELETE ReaderWGFormat *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"570","20161116999","DATA DELETE DoorParameters *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"569","20161116999","DATA UPDATE DoorProperty ID=1	DevID=4	Address=1	Disable=0
+ID=2	DevID=4	Address=2	Disable=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"568","20161116999","DATA DELETE DoorProperty *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"567","20161116999","DATA DELETE DevParameters *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"566","20161116999","DATA UPDATE DevProperty ID=4	Type=0	BusType=0	MachineType=29	Address=0	Mac=	IPAddress=192.168.1.201	SN=20161116999	IsMaster=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"565","20161116999","DATA DELETE DevProperty *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"564","20161116999","DATA DELETE PersonalVSTimezone *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"563","20161116999","DATA DELETE DoorVSTimezone *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"562","20161116999","DATA DELETE DiffTimezoneVS *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"561","20161116999","DATA DELETE outrelaysetting *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:51","0","",
+"560","20161116999","SET OPTIONS ~DSTF=0,DaylightSavingTimeOn=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"559","20161116999","DATA DELETE DSTSetting *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:46","0","",
+"558","20161116999","DATA UPDATE DoorParameters ID=1	Name=DoorFirstCardOpenDoor	Value=0	DevID=4
+ID=2	Name=DoorFirstCardOpenDoor	Value=0	DevID=4
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"557","20161116999","DATA DELETE firstcard *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:46","0","",
+"556","20161116999","DATA UPDATE DevParameters ID=4	Name=AntiPassback	Value=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"555","20161116999","DATA UPDATE DevParameters ID=4	Name=InterLock	Value=0
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"554","20161116999","SET OPTIONS DateTime=855502782
+...","Sim","2026-08-13 15:39:42","2026-08-13 15:39:43","0","",
+"553","20161116999","SET OPTIONS MachineTZ=-0300
+...","Sim","2026-08-13 15:39:42","2026-08-13 15:39:43","0","",
+"552","20161116999","DATA DELETE inoutfun *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"551","20161116999","DATA DELETE user *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"550","20161116999","DATA DELETE extuser *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:46","0","",
+"549","20161116999","DATA DELETE SuperAuthorize *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"548","20161116999","DATA DELETE mulcarduser *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"547","20161116999","DATA DELETE userauthorize *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"546","20161116999","DATA DELETE templatev10 *
+...","Não","2026-08-13 15:39:42","2026-08-13 15:39:47","0","",
+"545","20161116999","GET OPTIONS ~SerialNumber,ComPwd,PhotoFunOn,AutoServerFunOn,MaskDetectionFunOn,IRTempDetectionFunOn,EnalbeIRTempDetection,EnableNormalIRTempPass,EnalbeMaskDetection,EnableWearMaskPass,IRTempThreshold,IRTempUnit,EnableUnregisterPass,EnableTriggerAlarm,IRTempCorrection
+...","Não","2026-08-13 15:39:41","2026-08-13 15:39:43","0","",
+"544","20161116999","GET OPTIONS ~SerialNumber,FaceMinThreshold,GrayThroldValue,IRLivenessFunOn,IsSupportFaceAntiFake,EnableFaceAE,WDRStatus,CameraWorkMode,FVInterval,IsSupportPull,TouchWakeUp,MotionDetectSensitivity
+...","Sim","2026-08-13 15:39:41","2026-08-13 15:39:43","0","",
+
+
+#Adicionar o DM10 Com DIP 1:
+
+"Comandos do Dispositivo",
+"ID","Número de Série","Conteúdo","Imediato","Horário de Envio","Tempo de Retorno","Valor Retornado","Observação",
+"624","20161116999","SET OPTIONS ExtBoard485CommType=1
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"623","20161116999","DATA UPDATE extboardrelationlist ExtBoardID=1	ReactType=1	EntityID=3	SeqNo=1
+ExtBoardID=1	ReactType=4	EntityID=5	SeqNo=1
+ExtBoardID=1	ReactType=4	EntityID=6	SeqNo=2
+ExtBoardID=1	ReactType=2	EntityID=3	SeqNo=1
+ExtBoardID=1	ReactType=3	EntityID=3	SeqNo=1
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"622","20161116999","DATA UPDATE AuxOut ID=3	DevID=4	Address=3	Disable=0
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"621","20161116999","DATA UPDATE InputIOSetting Number=3	InType=1	TimeZoneId=1	DevID=4
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"620","20161116999","DATA UPDATE AuxIn ID=3	DevID=4	Address=3	Disable=0
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"619","20161116999","DATA UPDATE DevParameters ID=4	Name=IsSupportReaderEncrypt	Value=0
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"618","20161116999","DATA UPDATE ReaderProperty ID=5	DoorID=3	Type=2	Address=	IPAddress=	Port=4376	MAC=	InOut=0	Disable=0	VerifyType=0	Multicast=	DevID=4
+ID=6	DoorID=3	Type=2	Address=	IPAddress=	Port=4376	MAC=	InOut=1	Disable=0	VerifyType=0	Multicast=	DevID=4
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:36","0","",
+"617","20161116999","DATA UPDATE DoorParameters ID=3	Name=DoorAutoMatch	Value=1	DevID=4
+ID=3	Name=DoorDrivertime	Value=5	DevID=4
+ID=3	Name=DoorKeepOpenTimeZone	Value=0	DevID=4
+ID=3	Name=DoorValidTZ	Value=1	DevID=4
+ID=3	Name=DoorSupperPassWord	Value=	DevID=4
+ID=3	Name=DoorIntertime	Value=2	DevID=4
+ID=3	Name=DoorVerifyType	Value=10	DevID=4
+ID=3	Name=DoorSensorType	Value=0	DevID=4
+ID=3	Name=DoorDetectortime	Value=15	DevID=4
+ID=3	Name=DoorCloseAndLock	Value=0	DevID=4
+ID=3	Name=DoorForcePassWord	Value=	DevID=4
+ID=3	Name=DoorInTimeAPB	Value=0	DevID=4
+ID=3	Name=DoorREXInput	Value=1	DevID=4
+ID=3	Name=DoorREXTimeOut	Value=	DevID=4
+ID=3	Name=DoorDelayOpenTime	Value=0	DevID=4
+ID=3	Name=ExtDoorDelayDrivertime	Value=5	DevID=4
+ID=3	Name=DoorMultiCardInterTime	Value=10	DevID=4
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"616","20161116999","DATA UPDATE InputIOSetting Number=3	InType=0	TimeZoneId=1	DevID=4
+...","Não","2026-08-13 15:43:36","2026-08-13 15:43:37","0","",
+"615","20161116999","DATA UPDATE ReaderWGFormat ReaderID=5	DevID=4	WGFormatID=0	ParityVerifyDisable=0	ReversalType=0
+ReaderID=6	DevID=4	WGFormatID=0	ParityVerifyDisable=0	ReversalType=0
+...","Não","2026-08-13 15:43:35","2026-08-13 15:43:37","0","",
+"614","20161116999","DATA DELETE ReaderWGFormat ReaderID=5	DevID=4
+ReaderID=6	DevID=4
+...","Não","2026-08-13 15:43:35","2026-08-13 15:43:37","0","",
+"613","20161116999","DATA UPDATE DoorProperty ID=3	DevID=4	Address=3	Disable=0
+...","Não","2026-08-13 15:43:35","2026-08-13 15:43:37","0","",
+"612","20161116999","DATA UPDATE extboardproperty ExtBoardID=1	DevID=4	DevType=101	BusType=1	Address=1	Disable=0
+...","Não","2026-08-13 15:43:35","2026-08-13 15:43:37","0","",
+
+#Troca para o DIP 2
+
+"Comandos do Dispositivo",
+"ID","Número de Série","Conteúdo","Imediato","Horário de Envio","Tempo de Retorno","Valor Retornado","Observação",
+"625","20161116999","DATA UPDATE extboardproperty ExtBoardID=1	DevID=4	DevType=101	BusType=1	Address=2	Disable=0
+...","Não","2026-08-13 15:47:57","2026-08-13 15:47:58","0","",
+
+#Troca para o DIP 3
+
+"Comandos do Dispositivo",
+"ID","Número de Série","Conteúdo","Imediato","Horário de Envio","Tempo de Retorno","Valor Retornado","Observação",
+"626","20161116999","DATA UPDATE extboardproperty ExtBoardID=1	DevID=4	DevType=101	BusType=1	Address=4	Disable=0
+...","Não","2026-08-13 15:48:48","2026-08-13 15:48:50","0","",
+
+#Troca para o DIP 4
+
+"Comandos do Dispositivo",
+"ID","Número de Série","Conteúdo","Imediato","Horário de Envio","Tempo de Retorno","Valor Retornado","Observação",
+"627","20161116999","DATA UPDATE extboardproperty ExtBoardID=1	DevID=4	DevType=101	BusType=1	Address=8	Disable=0
+...","Não","2026-08-13 15:49:25","2026-08-13 15:49:26","0","",
+
+#Ativar a criptografia
+
+"Comandos do Dispositivo",
+"ID","Número de Série","Conteúdo","Imediato","Horário de Envio","Tempo de Retorno","Valor Retornado","Observação",
+"629","20161116999","DATA UPDATE DevParameters ID=4	Name=IsSupportReaderEncrypt	Value=1
+...","Não","2026-08-13 15:50:03","2026-08-13 15:50:04","0","",
+"628","20161116999","DATA UPDATE ReaderProperty ID=1	DoorID=1	Type=1	Address=1	IPAddress=	Port=4376	MAC=	InOut=0	Disable=0	VerifyType=0	Multicast=	DevID=4
+...","Não","2026-08-13 15:50:03","2026-08-13 15:50:04","0","",
